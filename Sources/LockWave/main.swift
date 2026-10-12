@@ -86,6 +86,12 @@ extension AppDelegate: NSMenuDelegate {
     }
 }
 
+// `LockWave --unregister-login` takes it out of the login items, for removal.
+if CommandLine.arguments.contains("--unregister-login") {
+    try? SMAppService.mainApp.unregister()
+    exit(0)
+}
+
 let app = NSApplication.shared
 let delegate = AppDelegate()
 app.delegate = delegate
